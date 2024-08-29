@@ -38,6 +38,9 @@ body {
     box-sizing: border-box;
 }
 
+
+
+
 .board {
     width: 700px; /* Fixed width for better grid snapping */
     height: 630px; /* Fixed height for better grid snapping */
@@ -64,6 +67,7 @@ body {
 .led {
     border-radius: 50%;
 }
+
 
 .cable {
     background-color: rgb(151, 98, 0);
@@ -136,4 +140,8 @@ body {
 
 .close-button:hover {
     color: #f00;
+}
+
+div .component:hover {
+    scale: 1.1;
 }
