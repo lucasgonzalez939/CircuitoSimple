@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronic Circuit Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="circuit-board">
+        <!-- Draggable Components -->
+         <div class="drawer">
+        <div class="component battery" draggable="true" id="battery" data-type="battery"><p>Bateria</p></div>
+        <div class="component switch" draggable="true" id="switch" data-type="switch"><p>Llave</p></div>
+        <div class="component led" draggable="true" id="led" data-type="led"><p>Lampara</p></div>
+        <div class="component cable" draggable="true" id="cable" data-type="cable"><p>Cable</p></div>
+    </div>
+        <!-- Circuit Board Area -->
+        <div class="board" id="board">
+            <!-- Grid Cells will be automatically handled by CSS Grid -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
