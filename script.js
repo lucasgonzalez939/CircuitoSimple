@@ -167,3 +167,26 @@ document.addEventListener('DOMContentLoaded', () => {
         updateConnections();
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const openInstructionsButton = document.getElementById('openInstructions');
+    const instructionsModal = document.getElementById('instructionsModal');
+    const closeInstructionsButton = document.getElementById('closeInstructions');
+
+    // Open the modal when the button is clicked
+    openInstructionsButton.addEventListener('click', () => {
+        instructionsModal.style.display = 'block';
+    });
+
+    // Close the modal when the close button is clicked
+    closeInstructionsButton.addEventListener('click', () => {
+        instructionsModal.style.display = 'none';
+    });
+
+    // Close the modal when clicking outside the modal content
+    window.addEventListener('click', (event) => {
+        if (event.target === instructionsModal) {
+            instructionsModal.style.display = 'none';
+        }
+    });
+});

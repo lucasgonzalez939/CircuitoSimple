@@ -28,6 +28,7 @@ body {
     background-color: #ddd;
     margin: 10px;
     border: 1px solid #aaa;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,10 +67,11 @@ body {
 
 .cable {
     background-color: rgb(151, 98, 0);
+    border-radius: 0px;
 }
 
 .switch {
-    border-radius: 10px;
+    border-radius: 20px;
     background-color: rgb(112, 112, 112);
 }
 
@@ -77,4 +79,61 @@ body {
 .battery {
     grid-column: span 2; /* Make the battery span 2 columns */
     background-color: rgb(255, 141, 141);
+}
+
+/* Button to open the instructions modal */
+.instruction-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.instruction-button:hover {
+    background-color: #0056b3;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* Close button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #f00;
 }
