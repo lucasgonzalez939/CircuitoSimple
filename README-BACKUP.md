@@ -10,14 +10,21 @@ This repository includes a backup branch system to maintain a mirror copy of the
 
 ## How to Create the Backup Branch
 
-### Option 1: Manual Push (Immediate)
+### Option 1: Using the Helper Script (Easiest)
+Run the provided script to push the backup branch:
+
+```bash
+./push-backup-branch.sh
+```
+
+### Option 2: Manual Push
 Run the following command to push the backup branch to the remote repository:
 
 ```bash
 git push origin backup
 ```
 
-### Option 2: GitHub Actions (Automatic)
+### Option 3: GitHub Actions (Automatic)
 The backup branch will be automatically created/updated when:
 - You manually trigger the "Create Backup Branch" workflow from the Actions tab
 - You push commits to the `main` or `master` branch
