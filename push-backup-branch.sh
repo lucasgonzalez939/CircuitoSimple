@@ -1,4 +1,5 @@
 #!/bin/bash
+# Make this file executable with: chmod +x push-backup-branch.sh
 
 # Simple script to push the backup branch to remote
 # This script can be run to immediately create the backup branch in the repository

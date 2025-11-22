@@ -24,11 +24,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Check if backup branch exists
-          if git ls-remote --heads origin backup | grep backup; then
+          # Check if backup branch exists (exact match)
+          if git ls-remote --heads origin backup | grep -q 'refs/heads/backup$'; then
             echo "Backup branch exists, updating it..."
             git checkout backup
-            git merge --ff-only $GITHUB_SHA || git merge -X theirs $GITHUB_SHA
+            
+            # Try fast-forward merge first
+            if ! git merge --ff-only $GITHUB_SHA; then
+              echo "⚠️  Fast-forward merge not possible, performing merge with theirs strategy..."
+              git merge -X theirs $GITHUB_SHA
+              echo "⚠️  Non-fast-forward merge completed. Changes may need manual review."
+            fi
           else
             echo "Creating new backup branch..."
             git checkout -b backup
