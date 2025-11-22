@@ -1,0 +1,37 @@
+name: Create Backup Branch
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  create-backup:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Create or update backup branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Check if backup branch exists
+          if git ls-remote --heads origin backup | grep backup; then
+            echo "Backup branch exists, updating it..."
+            git checkout backup
+            git merge --ff-only $GITHUB_SHA || git merge -X theirs $GITHUB_SHA
+          else
+            echo "Creating new backup branch..."
+            git checkout -b backup
+          fi
+          
+          git push origin backup
