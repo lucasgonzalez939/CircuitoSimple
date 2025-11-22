@@ -38,13 +38,23 @@ echo ""
 
 # Verify they point to the same commit
 echo "3. Verifying backup consistency..."
-MAIN_COMMIT=$(git rev-parse origin/main)
-if [ "$BRANCH_COMMIT" = "$TAG_COMMIT" ] && [ "$BRANCH_COMMIT" = "$MAIN_COMMIT" ]; then
-    echo "   ✓ Branch, tag, and origin/main all point to the same commit"
-    echo "   Commit: $MAIN_COMMIT"
+if git rev-parse --verify origin/main > /dev/null 2>&1; then
+    MAIN_COMMIT=$(git rev-parse origin/main)
+    if [ "$BRANCH_COMMIT" = "$TAG_COMMIT" ] && [ "$BRANCH_COMMIT" = "$MAIN_COMMIT" ]; then
+        echo "   ✓ Branch, tag, and origin/main all point to the same commit"
+        echo "   Commit: $MAIN_COMMIT"
+    else
+        echo "   ⚠ Backup points to: $BRANCH_COMMIT"
+        echo "   origin/main points to: $MAIN_COMMIT"
+    fi
 else
-    echo "   ⚠ Backup points to: $BRANCH_COMMIT"
-    echo "   origin/main points to: $MAIN_COMMIT"
+    echo "   ℹ Cannot verify against origin/main (remote not available)"
+    if [ "$BRANCH_COMMIT" = "$TAG_COMMIT" ]; then
+        echo "   ✓ Branch and tag point to the same commit"
+        echo "   Commit: $BRANCH_COMMIT"
+    else
+        echo "   ✗ Branch and tag point to different commits!"
+    fi
 fi
 
 echo ""
