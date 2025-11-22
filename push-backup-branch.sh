@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Make this file executable with: chmod +x push-backup-branch.sh
 
 # Simple script to push the backup branch to remote
